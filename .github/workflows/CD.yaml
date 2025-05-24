@@ -24,5 +24,5 @@ jobs:
               sudo docker rm $CONTAINER_ID
             fi
 
-            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME_TEST }}/CICDTEST:1.0
-            sudo docker run --env-file ./config/.env --name test1-app -d -p 80:8080 -e TZ=Asia/Seoul ${{ secrets.DOCKERHUB_USERNAME_TEST }}/CICDTEST:1.0
+            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME_TEST }}/cicdtest:1.0
+            sudo docker run --env-file ./config/.env --name test1-app -d -p 80:8080 -e TZ=Asia/Seoul ${{ secrets.DOCKERHUB_USERNAME_TEST }}/cicdtest:1.0
