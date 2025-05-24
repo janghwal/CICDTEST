@@ -23,7 +23,6 @@ public class TestController {
 	) {
 		String result = testService.serviceTest(str);
 		return new ResponseEntity<>(result, HttpStatus.OK);
+
 	}
-
-
 }
