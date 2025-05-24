@@ -1,0 +1,28 @@
+name: CD test
+
+on :
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy-to-ec2:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to EC2
+        uses: janghwal/CICDTEST@main
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ec2-user
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            CONTAINER_ID=$(sudo docker ps -q --filter "publish=80-8080")
+
+            if [ ! -z "$CONTAINER_ID" ]; then
+              sudo docker stop $CONTAINER_ID
+              sudo docker rm $CONTAINER_ID
+            fi
+
+            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME_TEST }}/CICDTEST:1.0
+            sudo docker run --env-file ./config/.env --name test1-app -d -p 80:8080 -e TZ=Asia/Seoul ${{ secrets.DOCKERHUB_USERNAME_TEST }}/CICDTEST:1.0
