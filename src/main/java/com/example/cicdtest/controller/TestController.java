@@ -21,6 +21,7 @@ public class TestController {
 	public ResponseEntity<String> controllerTest(
 		@RequestParam String str
 	) {
+
 		String result = testService.serviceTest(str);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 
