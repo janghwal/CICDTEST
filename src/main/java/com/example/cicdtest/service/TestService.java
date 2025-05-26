@@ -9,10 +9,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class TestService {
 
-	@Value("${jwt.secret.key}")
-	private String secretKey;
-
 	public String serviceTest(String str) {
-		return secretKey;
+		return str;
 	}
 }
