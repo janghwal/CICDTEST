@@ -62,7 +62,7 @@ jobs:
 
       # 3. 최신 이미지 컨테이너화하여 실행시
       - name: docker run new container
-        run: docker run --env-file ./config/.env --rm -d -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME_TEST }}/cicdtest:1.0
+        run: docker run --rm -d -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME_TEST }}/cicdtest:1.0
 
       # 4. 기존 이미지 정리
       - name: delete old docker image
